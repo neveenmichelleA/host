@@ -1,1 +1,45 @@
-# host
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D AR Viewer</title>
+
+  <!-- model-viewer -->
+  <script type="module"
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    html,body { height:100%; margin:0; font-family:Arial,Helvetica,sans-serif; background:#f4f4f4; }
+    .wrap { display:flex; flex-direction:column; height:100%; align-items:center; justify-content:center; padding:20px; box-sizing:border-box; }
+    model-viewer { width:100%; max-width:900px; height:70vh; background:#fff; border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,0.08); }
+    .note { margin-top:12px; color:#444; font-size:14px; text-align:center; max-width:900px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <model-viewer id="viewer"
+      alt="3D Model"
+      camera-controls
+      auto-rotate
+      interaction-prompt="auto"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      shadow-intensity="1"
+      exposure="1">
+    </model-viewer>
+
+    <div class="note">
+      Tip: Open this page on a phone and tap the AR icon to place the model in your space.
+    </div>
+  </div>
+
+  <script>
+    // Replace these two with your actual file URLs after upload to GitHub Pages
+    const GLB_URL  = "REPLACE_WITH_YOUR_GLB_URL";
+    const USDZ_URL = "REPLACE_WITH_YOUR_USDZ_URL";
+
+    const viewer = document.getElementById('viewer');
+
+    // Detect iOS devices (Quick Look / USDZ)
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouch
